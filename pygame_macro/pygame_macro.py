@@ -86,8 +86,9 @@ def play_macro(path):
     :param path:
     :return:
     """
-    t = threading.Thread(target=_queue_events, args=(path,))
-    t.start()
+    if os.path.isfile(path):
+        t = threading.Thread(target=_queue_events, args=(path,))
+        t.start()
 
 
 def _queue_events(path):
