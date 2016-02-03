@@ -63,7 +63,7 @@ def start_recording(path):
         os.remove(path)
     start_time = time.time()
     if logger is None:
-        logger = logging.getLogger('pygame_ui_tester')
+        logger = logging.getLogger('pygame_macro')
         logger.setLevel(logging.INFO)
         rfh = logging.FileHandler(path)
         logger.addHandler(rfh)
