@@ -108,5 +108,10 @@ def _queue_events(path):
             while elapsed_time < t:
                 time.sleep(0.01)
                 elapsed_time = time.time() - t0
-            post(e)
+            while 1:
+                try:
+                    post(e)
+                    break
+                except pygame.error:
+                    time.sleep(0.25)
 
