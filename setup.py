@@ -1,9 +1,6 @@
 
 from distutils.core import setup
-import importlib
-
-__version__ = importlib.import_module('pygame_macro._version').__version__
-
+from pygame_macro import __version__
 
 setup(
     name='pygame_macro',
@@ -15,5 +12,6 @@ setup(
     url='https://github.com/lobocv/pygame_macro',
     download_url='https://github.com/lobocv/pygame_macro/tarball/%s' % __version__,
     keywords=['pygame', 'event', 'gui', 'ui', 'test', 'testing', 'macro'],
+    install_requires=['pygame'],
     classifiers=[],
 )
