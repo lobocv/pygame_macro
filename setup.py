@@ -1,6 +1,8 @@
 
 from distutils.core import setup
-from pygame_macro import __version__
+import importlib
+
+__version__ = importlib.import_module('pygame_macro._version').__version__
 
 
 setup(
