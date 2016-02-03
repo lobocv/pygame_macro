@@ -65,6 +65,7 @@ def start_recording(path):
     if logger is None:
         logger = logging.getLogger('pygame_macro')
         logger.setLevel(logging.INFO)
+        logger.propagate = False
         rfh = logging.FileHandler(path)
         logger.addHandler(rfh)
 
