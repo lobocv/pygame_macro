@@ -60,7 +60,8 @@ def start_recording(path):
     """
     global pygame_event_get, logger, start_time
     if os.path.isfile(path):
-        os.remove(path)
+        with open(path, 'w'):
+            pass
     start_time = time.time()
     if logger is None:
         logger = logging.getLogger('pygame_macro')
