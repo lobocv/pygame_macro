@@ -1,17 +1,16 @@
-import pygame
-import logging
-import time
 import json
-import threading
+import logging
 import os
+import pygame
+import threading
+import time
 
 from pygame.constants import *
-
 
 pygame_event_get = None
 logger = None
 start_time = None
-
+STOP_MACRO = False
 
 EVENT_ATTRIBUTES = {
                     QUIT             : ('type', ),
@@ -88,9 +87,16 @@ def play_macro(path):
     :param path:
     :return:
     """
+    global STOP_MACRO
+    STOP_MACRO = False
     if os.path.isfile(path):
         t = threading.Thread(target=_queue_events, args=(path,))
         t.start()
+
+
+def stop_macro():
+    global STOP_MACRO
+    STOP_MACRO = True
 
 
 def _queue_events(path):
@@ -103,6 +109,8 @@ def _queue_events(path):
     t0 = time.time()
     with open(path, 'r') as f:
         for l in f:
+            if STOP_MACRO:
+                return
             elapsed_time = time.time() - t0
             line = json.loads(l)
             t = float(line['time'])
